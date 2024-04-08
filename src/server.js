@@ -1,11 +1,12 @@
 const fastify = require("fastify")({});
+const { createConnection } = require("./db/mysql");
 const {
-  createConnection,
   solicitarLista,
   inserirFuncionario,
   atualizarFuncionario,
   removerFuncionario,
-} = require("./db/mysql");
+} = require("./db/tabela-funcionarios");
+const { realizarPagamento } = require("./db/tabela-pagamentos");
 
 createConnection();
 
@@ -30,6 +31,18 @@ fastify.put("/funcionario/:id", async (req, res) => {
 fastify.delete("/funcionario/:id", async (req, res) => {
   const id = req.params.id;
   await removerFuncionario(id);
+
+  res.send({});
+});
+
+fastify.post("/pagamento", async function (req, res) {
+  const { id, valor } = req.body;
+  await realizarPagamento({
+    funcionario: {
+      id,
+    },
+    valor: valor,
+  });
 
   res.send({});
 });
