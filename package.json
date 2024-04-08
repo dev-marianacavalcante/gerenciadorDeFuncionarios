@@ -1,0 +1,15 @@
+{
+  "name": "gerenciadordefuncionarios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.26.2",
+    "mysql": "^2.18.1"
+  }
+}
