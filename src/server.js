@@ -8,6 +8,9 @@ const {
 } = require("./db/tabela-funcionarios");
 const { realizarPagamento } = require("./db/tabela-pagamentos");
 
+const cors = require("@fastify/cors");
+fastify.register(cors, {});
+
 createConnection();
 
 fastify.get("/funcionarios", async (req, res) => {
